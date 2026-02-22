@@ -1,0 +1,42 @@
+on the assignnet folder,
+# Create the new one specifically using the pyenv 3.12.3 version
+~/.pyenv/versions/3.12.3/bin/python -m venv .venv
+source .venv/bin/activate
+
+python --version
+
+pip install torch transformers sentencepiece
+
+Examples tested:
+python template.py "Who is Rabindranath Tagore?" "Where was he born?" "Is it in India?"
+YES
+
+python template.py "Who is Elon Musk?" "Which company is he associated with?" "Is that company Tesla?"
+YES
+
+python template.py "Who is Albert Einstein?" "Was he a physicist?" "Was he born in America?"
+NO
+
+python template.py "What country is the Taj Mahal in?" "Is it located in India?" "Is India in Asia?"
+YES
+
+python template.py "What country is the Great Wall in?" "Is it in China?" "Is China in Europe?"
+NO
+
+python template.py "A triangle has how many sides?" "Is that number 3?" "Is 3 less than 5?"
+NO
+
+python template.py "How many days are there in a week?" "Is it 7?" "Is 7 more than 10?"
+NO
+
+python template.py "What is 4 plus 4?" "Is the answer 8?" "Is that number even?"
+YES
+
+python template.py "What is 7 times 2?" "Is the answer 14?" "Is 14 divisible by 7?"
+YES
+
+python template.py "What is the capital of France?" "Is it famous for the Eiffel Tower?" "Is the city Paris?"
+YES
+
+python template.py "A triangle has how many sides?" "Is that number 3?" "Is 3 less than 4?"
+YES

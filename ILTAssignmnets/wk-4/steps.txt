@@ -1,0 +1,55 @@
+#Step1: Huggingface Token creation:
+
+Login to https://huggingface.co/
+Click on profile and select settings
+On the left sidebar, click the Access Tokens tab
+Click the New token button
+Give a Name and select READ (as read is enough for now I think)
+Generate a token. Copy it immediately and save it
+
+#Step2: Hugging Face CLI
+brew install huggingface-cli
+
+#post install above, fix path
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+#Authenticate once
+hf auth login --> it will prompt for password / key. Use the token created in 1st step.
+Add token as git credential? [y/N] --> enter y, it won't replace existing git. It will just add a new token to /Users/<user id>/.cache/huggingface/token
+
+#To download any pre-trained model in local. This is optional
+hf download google/flan-t5-xl --local-dir <path hwere you wanted to donwload>
+
+#Step3: on requirements.txt
+Commented in requirements.txt
+# cuda-bindings==12.8.0
+# cuda-python==12.8.0
+Replaced in requirements.txt
+# torch==2.6.0+cpu
+# torchaudio==2.6.0+cpu
+# torchvision==0.21.0+cpu
+torch==2.6.0
+torchaudio==2.6.0
+torchvision==0.21.0
+
+Step4: Python and pyenv
+Python version: 3.12.3 --> with this it worked for me. experienced issues with other versions.
+
+#If you have already venv at asisgnmnet folder, remove it first
+deactivate
+rm -rf .venv
+
+brew install pyenv
+eval "$(pyenv init -)"
+pyenv install 3.12.3
+pyenv local 3.12.3
+
+# Create the new one specifically using the pyenv 3.12.3 version
+~/.pyenv/versions/3.12.3/bin/python -m venv .venv
+source .venv/bin/activate
+
+python --version
+
+#Step4: install requirements
+pip install -r requirements.txt
